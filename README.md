@@ -47,6 +47,6 @@
 - A API para criação de passeio deve receber todos os atributos listados acima menos status;
 - A API de show deve retornar a duração real do passeio, ou seja, a diferença entre o início e o término;
 - O preço é calculado dinamicamente.
-  - Um passeio de 30 minutos para 1 cachorro custa R$25, sendo cada cachorro adicional R$15.
-  - Um passeio de 60 minutos para 1 cachorro custa R$35, sendo cada cachorro adicional R$20;
+  - Um passeio de 30 minutos para 1 cachorro custa R\$ 25, sendo cada cachorro adicional R$15.
+  - Um passeio de 60 minutos para 1 cachorro custa R\$ 35, sendo cada cachorro adicional R$20;
 
