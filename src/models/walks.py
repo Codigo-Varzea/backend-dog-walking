@@ -1,4 +1,11 @@
 import uuid
+from enum import Enum
+
+class WalkStatus(Enum):
+    WAITING = 1
+    WALKING = 2
+    DONE = 3
+
 
 class Walk(object):
     def __init__(self, status, schedule_date, price, duration, latitude, longitude, pets, start_time, end_time):
@@ -16,8 +23,10 @@ class Walk(object):
     def __eq__(self, other):
         return self.id == other.id
 
+
 class Walks(object):
-    walks = []
+    def __init__(self):
+        self.walks = []
 
     def create(self, walk):
         self.walks.append(walk)
