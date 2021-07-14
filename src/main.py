@@ -1,6 +1,14 @@
 from flask import Flask
+from src.api.passeios import passeios
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
 
-if __name__ == '__main__':
-    app.run(port=5000)
+    register_api(app)
+
+    return app
+
+def register_api(app):
+    app.register_blueprint(passeios)
+
+app = create_app()
