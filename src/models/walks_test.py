@@ -1,6 +1,6 @@
 import pytest
 from datetime import date, timedelta
-from .walks import Walks, Walk, WalkStatus
+from .walks import Walk, Walks, WalkStatus
 from .pets import Pet
 
 @pytest.fixture
@@ -29,14 +29,21 @@ def new_pet():
     return Pet("Spike", "Bulldog")
 
 @pytest.fixture
-def one_walk_waiting(new_pet):
-    return Walk(WalkStatus.WAITING, today, 30.0, timedelta(minutes=30), 20000.0, 30000.0, [new_pet], start_time, end_time)
+def one_walk_waiting(today, new_pet):
+    return Walk(today, timedelta(minutes=30), 20000.0, 30000.0, [new_pet])
 
-def test_create_walk(empty_walks, one_walk_waiting):
+@pytest.fixture
+def today_plus_30(today):
+    return today + timedelta(minutes=30)
+
+def test_create_walk(empty_walks, one_walk_waiting, today_plus_30):
     empty_walks.create(one_walk_waiting)
 
     assert len(empty_walks.fetch_all()) == 1
     assert one_walk_waiting in empty_walks.fetch_all()
+
+    assert one_walk_waiting.price == Walk.get_base_price()
+    assert one_walk_waiting.end_date == today_plus_30
 
 def test_delete_walk(filled_walks, one_walk_waiting):
     assert len(filled_walks.fetch_all()) == 1

@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime, timedelta
 from enum import Enum
 
 class WalkStatus(Enum):
@@ -8,21 +9,45 @@ class WalkStatus(Enum):
 
 
 class Walk(object):
-    def __init__(self, status, schedule_date, price, duration, latitude, longitude, pets, start_time, end_time):
+    def __init__(self, schedule_date, duration, latitude, longitude, pets, status = WalkStatus.WAITING):
         self.id = uuid.uuid4()
         self.status = status
         self.schedule_date = schedule_date
-        self.price = price
         self.duration = duration
         self.latitude = latitude
         self.longitude = longitude
         self.pets = pets
-        self.start_time = start_time
-        self.end_time = end_time
+
+        self.__set_price()
+        self.__set_end_date()
+    
+    def __set_price(self):
+        num_pets = len(self.pets)
+
+        base_price = self.get_base_price()
+        if self.duration >= timedelta(minutes=60):
+            base_price += 10
+        
+        self.price = base_price + ((num_pets - 1) * 15)
+
+    def __set_end_date(self):
+        self.end_date = self.schedule_date + self.duration
     
     def __eq__(self, other):
         return self.id == other.id
 
+    @staticmethod
+    def get_base_price():
+        return 25
+
+    @staticmethod
+    def from_json(json_post):
+        schedule_date = datetime.strptime(json_post.get('schedule_date'), '%Y-%m-%d %H:%M')
+        duration = timedelta(minutes=json_post.get('duration'))
+        latitude = json_post.get('latitude')
+        longitude = json_post.get('longitude')
+        pets = json_post.get('pets')
+        return Walk(schedule_date, duration, latitude, longitude, pets)
 
 class Walks(object):
     def __init__(self):
