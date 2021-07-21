@@ -1,0 +1,15 @@
+GET http://127.0.0.1:5000/api/v1/passeios HTTP/1.1
+content-type: application/json
+
+###
+
+POST http://127.0.0.1:5000/api/v1/passeios HTTP/1.1
+content-type: application/json
+
+{
+    "schedule_date": "2021-07-21 20:00",
+    "duration": 30,
+    "latitude": -22.9780622,
+    "longitude": 43.199881,
+    "pets": ["Spike", "Billy"]
+}
