@@ -11,5 +11,8 @@ content-type: application/json
     "duration": 30,
     "latitude": -22.9780622,
     "longitude": 43.199881,
-    "pets": ["Spike", "Billy"]
+    "pets": [
+        { "name": "Spike", "breed": "Vira lata" },
+        { "name": "Billy", "breed": "Poodle" }
+    ]
 }

@@ -1,6 +1,8 @@
 import uuid
 from datetime import datetime, timedelta
 from enum import Enum
+from marshmallow import Schema, fields
+from .pets import PetSchema
 
 class WalkStatus(Enum):
     WAITING = 1
@@ -48,6 +50,16 @@ class Walk(object):
         longitude = json_post.get('longitude')
         pets = json_post.get('pets')
         return Walk(schedule_date, duration, latitude, longitude, pets)
+
+class WalkSchema(Schema):
+    id = fields.Str()
+    schedule_date = fields.DateTime()
+    duration = fields.TimeDelta()
+    latitude = fields.Float()
+    longitude = fields.Float()
+    pets = fields.Nested(PetSchema, many=True)
+    price = fields.Float()
+    end_date = fields.DateTime()
 
 class Walks(object):
     def __init__(self):

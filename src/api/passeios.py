@@ -1,6 +1,6 @@
 from . import api
 from flask import Blueprint, request, jsonify
-from src.models import Walks, Walk, WalkStatus, Pet
+from src.models import Walks, Walk, WalkStatus, Pet, WalkSchema
 
 walks = Walks()
 ## Rotas da API
@@ -25,5 +25,8 @@ def get_passeio():
 @api.route('/passeios', methods=['POST'])
 def post_passeio():
     walk = Walk.from_json(request.json)
+
     walks.create(walk)
-    return jsonify(walk)
+
+    schema = WalkSchema()
+    return jsonify(schema.dumps(walk))
