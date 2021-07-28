@@ -63,3 +63,7 @@ def test_update_walk(filled_walks):
 
     assert filled_walks.fetch_all()[0].status == WalkStatus.WALKING
 
+def test_get_by_id_walk(filled_walks, one_walk_waiting):
+    walk = filled_walks.get_by_id(str(one_walk_waiting.id))
+
+    assert walk == one_walk_waiting

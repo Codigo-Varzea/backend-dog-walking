@@ -1,14 +1,14 @@
-GET http://127.0.0.1:5000/api/v1/passeios HTTP/1.1
+### Buscar todos os passeios
+GET http://127.0.0.1:5000/api/v1/passeios?page=3&total-per-page=2 HTTP/1.1
 content-type: application/json
 
-###
-
+### Criar passeio
 POST http://127.0.0.1:5000/api/v1/passeios HTTP/1.1
 content-type: application/json
 
 {
-    "schedule_date": "2021-07-21 20:00",
-    "duration": 30,
+    "schedule_date": "2021-07-29 20:00",
+    "duration": 60,
     "latitude": -22.9780622,
     "longitude": 43.199881,
     "pets": [
@@ -16,3 +16,27 @@ content-type: application/json
         { "name": "Billy", "breed": "Poodle" }
     ]
 }
+
+### Buscar passeio por ID
+GET http://127.0.0.1:5000/api/v1/passeios/97ff4b79-36bd-4fb5-8496-7f6630579e44 HTTP/1.1
+content-type: application/json
+
+### Deletar passeio
+DELETE http://127.0.0.1:5000/api/v1/passeios/67f6d9fe-b101-4108-927a-267faa64d5ef HTTP/1.1
+content-type: application/json
+
+### Buscar passeios a partir da data enviada
+GET http://127.0.0.1:5000/api/v1/passeios/hoje HTTP/1.1
+content-type: application/json
+
+### Verificar a duração de um passeio
+GET http://127.0.0.1:5000/api/v1/passeios/7b6283fc-1b88-4396-9650-8abf50a9d7bf/duracao HTTP/1.1
+content-type: application/json
+
+### Iniciar o passeio
+POST http://127.0.0.1:5000/api/v1/passeios/78863c76-ecbe-4083-91f2-a9f3bb06c472/inicio HTTP/1.1
+content-type: application/json
+
+### Finalizar o passeio
+POST http://127.0.0.1:5000/api/v1/passeios/78863c76-ecbe-4083-91f2-a9f3bb06c472/fim HTTP/1.1
+content-type: application/json

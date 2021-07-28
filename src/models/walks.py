@@ -54,12 +54,13 @@ class Walk(object):
 class WalkSchema(Schema):
     id = fields.Str()
     schedule_date = fields.DateTime()
-    duration = fields.TimeDelta()
+    duration = fields.TimeDelta(precision=fields.TimeDelta.MINUTES)
     latitude = fields.Float()
     longitude = fields.Float()
     pets = fields.Nested(PetSchema, many=True)
     price = fields.Float()
     end_date = fields.DateTime()
+    status = fields.Str()
 
 class Walks(object):
     def __init__(self):
@@ -77,7 +78,30 @@ class Walks(object):
         self.walks.pop(index)
 
         self.walks.insert(index, walk)
+
+    def fetch_by_page_index(self, total_per_page, index):
+        walks_count = len(self.walks)
+        start_index = index * total_per_page
+        end_index = start_index + total_per_page
+        if end_index >= walks_count:
+            end_index = walks_count
+        return self.walks[start_index:end_index]
     
     def fetch_all(self):
         return self.walks
+    
+    def fetch_from_start_date(self, start_date):
+        filtered_walks = []
+
+        for walk in self.walks:
+            if walk.schedule_date >= start_date:
+                filtered_walks.append(walk)
+
+        return filtered_walks
+        #return filter(lambda walk: walk.schedule_date > start_date, self.walks)
+
+    def get_by_id(self, id):
+        for walk in self.walks:
+            if str(walk.id) == id:
+                return walk
 
