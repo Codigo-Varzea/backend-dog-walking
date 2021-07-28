@@ -1,16 +1,15 @@
 # Desafio Dog Walking
 
-## Tecnologias
+Desafio feito em Live no canal (Código Várzea)[https://www.youtube.com/channel/UCPTwyiwRNI1p3y-Wldqf7hA] criando uma API com Python + Flask
 
-### Frontend
-- React
-- Jest
-- Firebase
+Utilizamos como base o desafio de emprego do (Dog Hero)[https://github.com/doghero/test-backend/wiki/Test-Case]
 
-### Backend
+## Tecnologias Utilizadas
 - Python
 - Flask
-- GraphQL
+- Pytest
+- Marshmallow
+- DevContainer
 
 ## Entidades
 (Passeio)
@@ -34,9 +33,8 @@
 
 ## Rotas da API
 - api/v0.1/passeios (GET)
-- api/v0.1/passeios?pagina=0 (GET)
+- api/v0.1/passeios?page=0&total-per-page=10 (GET)
 - api/v0.1/passeios (POST)
-- api/v0.1/passeios (PUT)
 - api/v0.1/passeios (DELETE)
 - api/v0.1/passeios/hoje (GET)
 - api/v0.1/passeios/duracao (GET)
