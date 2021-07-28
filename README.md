@@ -1,8 +1,8 @@
 # Desafio Dog Walking
 
-Desafio feito em Live no canal (Código Várzea)[https://www.youtube.com/channel/UCPTwyiwRNI1p3y-Wldqf7hA] criando uma API com Python + Flask
+Desafio feito em Live no canal [Código Várzea](https://www.youtube.com/channel/UCPTwyiwRNI1p3y-Wldqf7hA) criando uma API com Python + Flask
 
-Utilizamos como base o desafio de emprego do (Dog Hero)[https://github.com/doghero/test-backend/wiki/Test-Case]
+Utilizamos como base o desafio de emprego do [Dog Hero](https://github.com/doghero/test-backend/wiki/Test-Case)
 
 ## Tecnologias Utilizadas
 - Python
